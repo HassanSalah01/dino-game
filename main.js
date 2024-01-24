@@ -4,16 +4,21 @@ let player;
 let background;
 let floor;
 let enemy;
+let enemyXposition = 700;
 
 const draw = () => {
-  enemy = new Enemy({
-    x: 700,
-    y: 550,
-    w: 20,
-    r: 50,
-    color: "yellow",
-    ctx: ctx,
-  });
+  for (let i = 0; i < 5; i++) {
+    enemy.push(
+      new Enemy({
+        x: 700,
+        y: 550,
+        w: 20,
+        r: 50,
+        color: "yellow",
+        ctx: ctx,
+      })
+    );
+  }
   floor = new Player({
     x: 0 + 10,
     y: 600,
@@ -43,8 +48,10 @@ const draw = () => {
 
 const update = () => {
   background.draw();
-  enemy.draw();
-  enemy.update();
+  for (let i = 0; i < 5; i++) {
+    enemy.draw();
+    enemy.update();
+  }
   // player.draw();
   floor.draw();
   window.requestAnimationFrame(update);
